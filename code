@@ -1,0 +1,13 @@
+import requests 
+pokemon=input("Enter the name of the pokemon you want to know about").lower()
+url=f"https://pokeapi.co/api/v2/pokemon/{pokemon}" 
+y=requests.get(url)
+if(y.status_code==200):
+  d=y.json() 
+  print(f"Name:{d['name']}")
+  print("Abilities:")
+  for i in d['abilities']:
+    print(i['ability']['name'])
+    print("to know more about "+i['ability']['name']+" "+i['ability']['url'])
+else:
+  print("Different one")
